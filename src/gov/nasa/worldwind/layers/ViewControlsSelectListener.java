@@ -86,6 +86,8 @@ public class ViewControlsSelectListener implements SelectListener
     /**
      * Set the repeat timer delay in milliseconds.
      *
+     * If the passed delay is <=0 then the timer is stopped.
+     *
      * @param delay the repeat timer delay in milliseconds.
      *
      * @throws IllegalArgumentException
@@ -94,11 +96,12 @@ public class ViewControlsSelectListener implements SelectListener
     {
         if (delay <= 0)
         {
-            String message = Logging.getMessage("generic.ArgumentOutOfRange", delay);
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            this.repeatTimer.stop();
+        } else
+        {
+            this.repeatTimer.setDelay(delay);
+            this.repeatTimer.restart();
         }
-        this.repeatTimer.setDelay(delay);
     }
 
     /**
