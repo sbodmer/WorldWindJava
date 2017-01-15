@@ -21,7 +21,7 @@ import gov.nasa.worldwind.formats.geojson.GeoJSONMultiPolygon;
 import gov.nasa.worldwind.formats.geojson.GeoJSONPoint;
 import gov.nasa.worldwind.formats.geojson.GeoJSONPolygon;
 import gov.nasa.worldwind.formats.geojson.GeoJSONPositionArray;
-import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.*;
 import gov.nasa.worldwind.layers.RenderableLayer;
 import gov.nasa.worldwind.ogc.collada.ColladaAbstractGeometry;
 import gov.nasa.worldwind.render.BasicShapeAttributes;
@@ -51,7 +51,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * The renderable of the GeoJSONDoc
+ * The renderable of the GeoJSONDoc for OSM Buildings
  *
  * @author sbodmer
  */
@@ -74,28 +74,40 @@ public class OSMBuildingsRenderable implements Renderable, PreRenderable, Dispos
     static
     {
         //--- Init the color mappings, use lowercase
-        COLORS.put("white", "#ffffff");
+        //--- http://wiki.openstreetmap.org/wiki/Key:colour
         COLORS.put("black", "#000000");
-        COLORS.put("gray", "#888888");
-        COLORS.put("grey", "#888888");
-        COLORS.put("silver", "#aaaaaa");
-        COLORS.put("skyblue", "#8888ff");
-        COLORS.put("saddlebrown", "#53452d");
-        COLORS.put("beige", "#a69191");
-        COLORS.put("darkgray", "#333333");
-        COLORS.put("lightgray", "#b7b7b7");
-        COLORS.put("lightgrey", "#b7b7b7");
-        COLORS.put("lightblue", "#48bed7");
-        COLORS.put("blue", "#0000ff");
-        COLORS.put("yellow", "#ffff00");
+        COLORS.put("gray", "#808080");
+        COLORS.put("grey", "#808080");
+        COLORS.put("maroon", "#800000");
+        COLORS.put("olive", "#808000");
+        COLORS.put("green", "#008000");
+        COLORS.put("teal", "#008080");
+        COLORS.put("navy", "#000080");
+        COLORS.put("purple", "#800080");
+        COLORS.put("white", "#ffffff");
+        COLORS.put("silver", "#C0C0C0");
         COLORS.put("red", "#ff0000");
-        COLORS.put("goldenrod", "#ffa200");
-        COLORS.put("gold", "#ffa200");
-        COLORS.put("ivory", "#eeeeee");
-        COLORS.put("orange", "#ffa200");
-        COLORS.put("green", "#00ff00");
-        COLORS.put("pink", "#dc51ff");
-        COLORS.put("marron", "#4e2a2a");
+        COLORS.put("yellow", "#ffff00");
+        COLORS.put("lime", "#00ff00");
+        COLORS.put("aqua", "#00ffff");
+        COLORS.put("blue", "#0000ff");
+        COLORS.put("fuchsia", "#ff00ff");
+        COLORS.put("brown", "#363027");
+
+        //---  https://www.w3.org/TR/css3-color/#svg-color
+        COLORS.put("beige", "#f5f5dc");
+        COLORS.put("darkgray", "#a9a9a9");
+        COLORS.put("darkgrey", "#a9a9a9");
+        COLORS.put("goldenrod", "#daa520");
+        COLORS.put("gold", "#ffd700");
+        COLORS.put("ivory", "#fffff0");
+        COLORS.put("lightgray", "#d3d3d3");
+        COLORS.put("lightgrey", "#d3d3d3");
+        COLORS.put("lightblue", "#add8e6");
+        COLORS.put("orange", "#ffa500");
+        COLORS.put("pink", "#ffc0cb");
+        COLORS.put("skyblue", "#87ceeb");
+        COLORS.put("saddlebrown", "#8b4513");
     }
 
     /**
@@ -311,7 +323,7 @@ public class OSMBuildingsRenderable implements Renderable, PreRenderable, Dispos
      * <p>
      * If the polygon has an altitude, do not extrude it<p>
      * <p>
-     * If the polygin properties has a height use it for extrude<p>
+     * If the polygon properties has a height use it for extrude<p>
      * <p>
      * If the the default height > 0 , then extrude the polygon if no other height
      * is found<p>
@@ -350,6 +362,11 @@ public class OSMBuildingsRenderable implements Renderable, PreRenderable, Dispos
             double minHeight = 0;
             double levels = 0;
             String roofColor = "#888888";
+            String roofShape = "flat";
+            double roofHeight = 0;
+            String roofMaterial = "concrete";
+            String roofOrientation = "along";
+            double roofDirection = -1;
             if (properties != null)
             {
                 if (properties.getValue("height") != null)
@@ -358,13 +375,24 @@ public class OSMBuildingsRenderable implements Renderable, PreRenderable, Dispos
                     levels = (Double) properties.getValue("levels");
                 if (properties.getValue("minHeight") != null)
                     minHeight = (Double) properties.getValue("minHeight");
+                //--- Roof
                 if (properties.getValue("roofColor") != null)
                     roofColor = COLORS.get(properties.getValue("roofColor"));
+                if (properties.getValue("roofShape") != null)
+                    roofShape = (String) properties.getValue("roofShape");
+                if (properties.getValue("roofHeight") != null)
+                    roofHeight = (Double) properties.getValue("roofHeight");
+                if (properties.getValue("roofMaterial") != null)
+                    roofMaterial = (String) properties.getValue("roofMaterial");
+                if (properties.getValue("roofOrientation") != null)
+                    roofOrientation = (String) properties.getValue("roofOrientation");
+                if (properties.getValue("roofDirection") != null)
+                    roofDirection = Double.parseDouble((String) properties.getValue("roofDirection"));
+
             }
-            // if (minHeight > 0) System.out.println("minHeight:"+minHeight);
             if (roofColor == null)
                 roofColor = "#888888";
-            // System.out.println("minHeight:"+minHeight+" height:"+height);
+
             //--- Check if height are correcte
             if (height <= 0)
             {
@@ -401,21 +429,22 @@ public class OSMBuildingsRenderable implements Renderable, PreRenderable, Dispos
             // attrs.setDrawInterior(true);
             // attrs.setEnableLighting(true);
 
-            ShapeAttributes cap = new BasicShapeAttributes();
-            cap.setInteriorMaterial(new Material(Color.decode(roofColor)));
-            cap.setOutlineMaterial(Material.GRAY);
-            cap.setInteriorOpacity(1);
-            cap.setDrawInterior(true);
-            // cap.setDrawInterior(true);
-            cap.setEnableLighting(true);
-            cap.setDrawOutline(true);
-            cap.setEnableAntialiasing(true);
+            //--- Roof cap
+            ShapeAttributes ra = new BasicShapeAttributes();
+            ra.setInteriorMaterial(new Material(Color.decode(roofColor)));
+            ra.setOutlineMaterial(new Material(Color.decode(roofColor)));
+            ra.setInteriorOpacity(roofMaterial.equals("glass")?0.7:1);
+            ra.setDrawInterior(true);
+            ra.setEnableLighting(true);
+            ra.setDrawOutline(false);
+            ra.setEnableAntialiasing(true);
 
+            //--- Walls with defaut cap (flat roof)
             ExtrudedPolygon box = new ExtrudedPolygon(height);
             box.setAltitudeMode(WorldWind.CONSTANT);
             box.setAttributes(attrs);
             box.setSideAttributes(attrs);
-            box.setCapAttributes(cap);
+            box.setCapAttributes(ra);
             box.setVisible(true);
             box.setOuterBoundary(outerBoundary);
             box.setBaseDepth(-minHeight);   //--- negative value will push the base up instead of below
@@ -426,11 +455,29 @@ public class OSMBuildingsRenderable implements Renderable, PreRenderable, Dispos
                     box.addInnerBoundary(iter);
                 }
             }
+            renderables.add(box);
+
+
+            if (roofShape.equals("pyramid") || roofShape.equals("pyramidal")) {
+                //--- Flat
+                /*
+                Polygon roof = new Polygon(outerBoundary);
+                Position ref = outerBoundary.iterator().next();
+                Position nref = Position.fromDegrees(ref.getLatitude().degrees, ref.getLongitude().degrees, height);
+                roof.setReferencePosition(nref);
+                roof.setAttributes(ra);
+                renderables.add(roof);
+                */
+
+            } else {
+
+
+            }
 
             if (properties != null)
                 box.setValue(AVKey.PROPERTIES, properties);
 
-            renderables.add(box);
+
         }
         else
         {
@@ -523,7 +570,7 @@ public class OSMBuildingsRenderable implements Renderable, PreRenderable, Dispos
             return;
         String v = properties.getStringValue("color");
         if (v == null)
-            v = "#ffffff";
+            v = "#aaaaaa";
         if (COLORS.containsKey(v.toLowerCase()))
             v = COLORS.get(v.toLowerCase());
         if (!v.startsWith("#"))

@@ -5,6 +5,6 @@
     <Property name="MinActiveAltitude" value="1"/>
     <Property name="NetworkRetrievalEnabled" value="true"/>
     <Property name="DefaultBuildingHeight" value="10"/>
-    <Property name="MaxTiles" value="20"/>
+    <Property name="MaxTiles" value="30"/>
 
 </Layer>

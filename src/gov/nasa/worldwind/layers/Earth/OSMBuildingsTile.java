@@ -8,7 +8,7 @@ package gov.nasa.worldwind.layers.Earth;
 import gov.nasa.worldwind.*;
 import gov.nasa.worldwind.cache.FileStore;
 import gov.nasa.worldwind.formats.geojson.GeoJSONDoc;
-import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.*;
 import gov.nasa.worldwind.render.*;
 import gov.nasa.worldwind.retrieve.*;
 
@@ -52,6 +52,11 @@ public class OSMBuildingsTile implements RetrievalPostProcessor, Runnable
      * The loaded buildings
      */
     OSMBuildingsRenderable renderable = null;
+
+    /**
+     * The tile bounding box
+     */
+    Extent bb = null;
 
     public OSMBuildingsTile(int level, int x, int y, OSMBuildingsTileListener listener, Position center,
         FileStore store, boolean retrieveRemoteData, long expireDate, double defaultHeight)
