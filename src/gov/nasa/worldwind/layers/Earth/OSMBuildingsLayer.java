@@ -85,7 +85,7 @@ public class OSMBuildingsLayer extends RenderableLayer implements OSMBuildingsTi
         sc.setOpacity(1);
         setScreenCredit(sc);
 
-        setExpiryTime(7 * 24 * 60 * 1000);
+        setExpiryTime(365 * 24 * 60 * 1000);
 
         // System.out.println("ROOT:"+cacheRoot);
         /*
