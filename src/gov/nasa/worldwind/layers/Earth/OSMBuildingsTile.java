@@ -216,7 +216,7 @@ public class OSMBuildingsTile implements RetrievalPostProcessor, Runnable
                     listener.osmBuildingsLoadingFailed(this, ".json file could not be found, wrong http response : " + hr.getResponseCode()+" "+hr.getResponseMessage());
             }
         }
-        catch (IOException ex)
+        catch (Exception ex)
         {
             ex.printStackTrace();
             //--- Failed
