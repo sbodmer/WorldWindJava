@@ -100,6 +100,7 @@ public class OSMBuildingsTile implements RetrievalPostProcessor, Runnable
                 }
                 else
                 {
+                    // System.out.println("FOUND LOCAL json");
                     WorldWind.getTaskService().addTask(this);
                     return;
                 }
@@ -125,6 +126,7 @@ public class OSMBuildingsTile implements RetrievalPostProcessor, Runnable
             HTTPRetriever r = new HTTPRetriever(new URL(s), this);
             r.setConnectTimeout(30000);
             WorldWind.getRetrievalService().runRetriever(r);
+
         }
         catch (MalformedURLException ex)
         {
