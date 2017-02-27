@@ -199,6 +199,7 @@ public class OSMBuildingsTile implements RetrievalPostProcessor, Runnable
                 File f = store.newFile(cachePath);
                 FileOutputStream fout = new FileOutputStream(f);
                 //--- The buffer contains trailling 0000, so convert to string to remove it
+                //--- Why is that, no idea ???
                 String tmp = new String(b, "UTF-8").trim();
                 fout.write(tmp.getBytes("UTF-8"));
                 fout.close();

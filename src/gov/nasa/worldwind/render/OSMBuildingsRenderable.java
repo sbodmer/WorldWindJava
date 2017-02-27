@@ -57,6 +57,8 @@ public class OSMBuildingsRenderable implements Renderable, PreRenderable, Dispos
         COLORS.put("darkbrown", "#654321");
         COLORS.put("redbrown", "#a52a2a");
         COLORS.put("cream", "#ffffcc");
+        COLORS.put("brickred", "#cb4154");
+        COLORS.put("bluegreen", "#0d98ba");
     }
 
     /**
