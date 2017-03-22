@@ -10,11 +10,13 @@ import gov.nasa.worldwind.cache.FileStore;
 import gov.nasa.worldwind.formats.geojson.GeoJSONDoc;
 import gov.nasa.worldwind.geom.*;
 import gov.nasa.worldwind.render.*;
+import gov.nasa.worldwind.render.airspaces.SurfaceBox;
 import gov.nasa.worldwind.retrieve.*;
 
 import java.io.*;
 import java.net.*;
 import java.nio.ByteBuffer;
+import java.util.*;
 
 /**
  * Thread to download the gson data
@@ -23,8 +25,10 @@ import java.nio.ByteBuffer;
  */
 public class OSMBuildingsTile implements RetrievalPostProcessor, Runnable
 {
-
-    static final String OSMBUILDINGS_URL = "http://[abcd].data.osmbuildings.org/0.2/anonymous/tile";
+    /**
+     * Use the OSMBuildings key specified for WW
+     */
+    static final String OSMBUILDINGS_URL = "http://[abcd].data.osmbuildings.org/0.2/sx3pxpz6/tile";
     // 15/16942/11632.json"
     /**
      * The counter for the different servers
@@ -58,6 +62,8 @@ public class OSMBuildingsTile implements RetrievalPostProcessor, Runnable
      */
     Extent bb = null;
 
+    ExtrudedPolygon tile = null;
+
     public OSMBuildingsTile(int level, int x, int y, OSMBuildingsTileListener listener, Position center,
         FileStore store, boolean retrieveRemoteData, long expireDate, double defaultHeight)
     {
@@ -73,6 +79,45 @@ public class OSMBuildingsTile implements RetrievalPostProcessor, Runnable
 
         cachePath = OSMBuildingsLayer.CACHE_FOLDER + File.separatorChar + level + File.separatorChar + x
             + File.separatorChar + y + ".json";
+
+        //--- Create the surface box for tile information
+        tile = new ExtrudedPolygon();
+        List<LatLon> list = new ArrayList<LatLon>();
+        /*
+        double lat = (y*180d/OSMBuildingsLayer.maxY)-90d;
+        double dy = 180d/OSMBuildingsLayer.maxX;
+        double lon = (x*360d/OSMBuildingsLayer.maxX)-180d;
+        double dx = 360d/OSMBuildingsLayer.maxX;
+        */
+        double lat1 = OSMBuildingsLayer.y2lat(y + 1, OSMBuildingsLayer.ZOOM);
+        double lon1 = OSMBuildingsLayer.x2lon(x, OSMBuildingsLayer.ZOOM);
+        double lat2 = OSMBuildingsLayer.y2lat(y, OSMBuildingsLayer.ZOOM);
+        double lon2 = OSMBuildingsLayer.x2lon(x + 1, OSMBuildingsLayer.ZOOM);
+        LatLon p1 = LatLon.fromDegrees(lat1, lon1);       //--- Bottom left
+        LatLon p2 = LatLon.fromDegrees(lat2,lon1);     //--- Top left
+        LatLon p3 = LatLon.fromDegrees(lat2,lon2);  //--- Top right
+        LatLon p4 = LatLon.fromDegrees(lat1,lon2);     //--- Bottom right
+        list.add(p1);
+        list.add(p2);
+        list.add(p3);
+        list.add(p4);
+        list.add(p1);
+        tile.setOuterBoundary(list);
+        tile.setVisible(true);
+        tile.setHeight(100d);
+        tile.setAltitudeMode(WorldWind.CONSTANT);
+        tile.setEnableCap(true);
+        ShapeAttributes att = new BasicShapeAttributes();
+        att.setInteriorOpacity(0.2d);
+        att.setEnableLighting(false);
+        att.setOutlineMaterial(Material.BLACK);
+        att.setOutlineWidth(1d);
+        att.setInteriorMaterial(Material.GREEN);
+        att.setDrawInterior(true);
+        att.setDrawOutline(false);
+        tile.setSideAttributes(att);
+        tile.setAttributes(att);
+        // System.out.println("P1:"+p1+" P2:"+p2+" P3:"+p3+" P4:"+p4);
     }
 
     @Override
@@ -84,10 +129,17 @@ public class OSMBuildingsTile implements RetrievalPostProcessor, Runnable
     //**************************************************************************
     //*** API
     //**************************************************************************
+
+    /**
+     * Start the data fetch via HTTPRetriever
+     */
     public void fetch()
     {
         try
         {
+            if (listener != null)
+                listener.osmBuildingsLoading(this);
+
             //--- Check in local file store first
             URL data = store.findFile(cachePath, false);
             if (data != null)
@@ -123,9 +175,12 @@ public class OSMBuildingsTile implements RetrievalPostProcessor, Runnable
             }
 
             s += "/15/" + x + "/" + y + ".json";
-            HTTPRetriever r = new HTTPRetriever(new URL(s), this);
-            r.setConnectTimeout(30000);
+            HTTPRetriever r  = new HTTPRetriever(new URL(s), this);
+            r.setConnectTimeout(10000);
+            r.setReadTimeout(20000);
             WorldWind.getRetrievalService().runRetriever(r);
+
+
 
         }
         catch (MalformedURLException ex)
@@ -161,6 +216,14 @@ public class OSMBuildingsTile implements RetrievalPostProcessor, Runnable
         return renderable;
     }
 
+    /**
+     * Return the tile footprint as a surface on the ground
+     *
+     * @return
+     */
+    public Renderable getTileSurfaceRenderable() {
+        return tile;
+    }
     /**
      * Tick tile usage
      */

@@ -42,10 +42,10 @@ public class OSMBuildingsLayer extends RenderableLayer implements OSMBuildingsTi
 
     public static final String CACHE_FOLDER = "Earth" + File.separatorChar + "OSMBuildings";
 
-    static final int ZOOM = 15;
+    public static final int ZOOM = 15;
 
-    static final double maxX = Math.pow(2, ZOOM);
-    static final double maxY = Math.pow(2, ZOOM);
+    public static final double maxX = Math.pow(2, ZOOM);
+    public static final double maxY = Math.pow(2, ZOOM);
 
     // LatLon center = null;
     // SurfacePolygon carpet = null;
@@ -185,6 +185,27 @@ public class OSMBuildingsLayer extends RenderableLayer implements OSMBuildingsTi
         this.maxTiles = maxTiles;
     }
 
+
+    public static int lon2x(double lon, int z)
+    {
+        return (int)(Math.floor((lon + 180.0) / 360.0 * Math.pow(2.0, z)));
+    }
+
+    public static int lat2y(double lat, int z)
+    {
+        return (int)(Math.floor((1.0 - Math.log(Math.tan(lat * Math.PI/180.0) + 1.0 / Math.cos(lat * Math.PI/180.0)) / Math.PI) / 2.0 * Math.pow(2.0, z)));
+    }
+
+    public static double x2lon(int x, int z)
+    {
+        return x / Math.pow(2.0, z) * 360.0 - 180;
+    }
+
+    public static double y2lat(int y, int z)
+    {
+        double n = Math.PI - 2.0 * Math.PI * y / Math.pow(2.0, z);
+        return 180.0 / Math.PI * Math.atan(0.5 * (Math.exp(n) - Math.exp(-n)));
+    }
     //**************************************************************************
     //*** AbstractLayer
     //**************************************************************************
@@ -270,6 +291,7 @@ public class OSMBuildingsLayer extends RenderableLayer implements OSMBuildingsTi
                 ww = (WorldWindow) msg.getSource();
                 // ww.addSelectListener(this);
             }
+            /*
             double rx = center.getLongitude().radians;
             double dx = 128 / Math.PI * maxX * (rx + Math.PI);
             int x = (int) dx / 256;
@@ -279,6 +301,9 @@ public class OSMBuildingsLayer extends RenderableLayer implements OSMBuildingsTi
             double tl = Math.tan(Math.PI / 4d + ry / 2d);
             double dy = 128 / Math.PI * maxY * (Math.PI - Math.log(tl));
             int y = (int) dy / 256;
+            */
+            int x = lon2x(center.getLongitude().degrees, ZOOM);
+            int y = lat2y(center.getLatitude().degrees, ZOOM);
             // System.out.println("X=" + x + ", Y=" + y);
 
             //--- Take the total of 9 tile
@@ -305,6 +330,7 @@ public class OSMBuildingsLayer extends RenderableLayer implements OSMBuildingsTi
                         Renderable rend = oldest.getRenderable();
                         if (rend != null)
                             removeRenderable(rend);
+                        removeRenderable(oldest.getTileSurfaceRenderable());
                         buildings.remove(oldest.toString());
                     }
 
@@ -330,17 +356,26 @@ public class OSMBuildingsLayer extends RenderableLayer implements OSMBuildingsTi
     @Override
     public void osmBuildingsLoaded(OSMBuildingsTile btile)
     {
-
+        removeRenderable(btile.getTileSurfaceRenderable());
         addRenderable(btile.getRenderable());
     }
 
     @Override
+    public void osmBuildingsLoading(OSMBuildingsTile btile)
+    {
+        //--- Loading in progress, display tile shadow
+        addRenderable(btile.getTileSurfaceRenderable());
+        ww.redrawNow();
+    }
+    @Override
     public void osmBuildingsLoadingFailed(OSMBuildingsTile btile, String reason)
     {
         // System.out.println("LOADING FAILED:" + btile+" reason:"+reason);
+        removeRenderable(btile.getTileSurfaceRenderable());
         Logging.logger().log(Level.WARNING, "OSMBuildingsLayer.osmBuildingsLoadingFailed for tile " + btile.toString(),
             new Object[] {reason});
         buildings.remove(btile);
+
     }
 
     //**************************************************************************
