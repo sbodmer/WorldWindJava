@@ -28,7 +28,10 @@ public class OSMBuildingsTile implements RetrievalPostProcessor, Runnable
     /**
      * Use the OSMBuildings key specified for WW
      */
-    static final String OSMBUILDINGS_URL = "http://[abcd].data.osmbuildings.org/0.2/sx3pxpz6/tile";
+    // static final String OSMBUILDINGS_URL = "http://[abcd].data.osmbuildings.org/0.2/sx3pxpz6/tile"
+    //--- OBSOLETE Use https://github.com/sbodmer/JWorldWindEarth instead
+    static final String OSMBUILDINGS_URL = "";
+
     // 15/16942/11632.json"
     /**
      * The counter for the different servers

@@ -78,6 +78,7 @@ public class OSMBuildingsLayer extends RenderableLayer implements OSMBuildingsTi
     {
         super();
 
+        System.err.println("!!! This class is obsolete, use the new project https://github.com/sbodmer/JWorldWindEarth instead !!!");
         //--- Prepare the screen credits
         ScreenCredit sc = new ScreenCreditImage("OSM Buildings",
             getClass().getResource("/images/OSMBuildings_32x32.png"));
