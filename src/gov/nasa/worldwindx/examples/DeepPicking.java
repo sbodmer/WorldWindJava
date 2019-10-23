@@ -15,7 +15,7 @@ import gov.nasa.worldwind.render.airspaces.Airspace;
  * Illustrates how to cause all elements under the cursor in a WorldWindow to be reported in <code>{@link
  * SelectEvent}s</code>. This prints all elements under the cursor to the console in response to a <code>HOVER</code>
  * SelectEvent.
- * <p/>
+ * <p>
  * In order to enable deep picking, any batch picking for the desired elements must be disabled and the
  * SceneController's deep picking property must be enabled. See <code>{@link gov.nasa.worldwind.SceneController#setDeepPickEnabled(boolean)}</code>.
  *
@@ -71,6 +71,6 @@ public class DeepPicking extends Airspaces
 
     public static void main(String[] args)
     {
-        start("World Wind Deep Picking", AppFrame.class);
+        start("WorldWind Deep Picking", AppFrame.class);
     }
 }

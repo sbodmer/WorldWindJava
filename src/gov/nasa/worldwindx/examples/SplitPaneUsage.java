@@ -17,11 +17,11 @@ import javax.swing.border.*;
 import java.awt.*;
 
 /**
- * Illustrates how to use World Wind within a Swing JSplitPane. Doing so is mostly straightforward, but in order to work
+ * Illustrates how to use WorldWind within a Swing JSplitPane. Doing so is mostly straightforward, but in order to work
  * around a Swing bug the WorldWindow must be placed within a JPanel and that JPanel's minimum preferred size must be
  * set to zero (both width and height). See the code that does this in the first few lines of the AppPanel constructor
  * below.
- * <p/>
+ * <p>
  * This example also illustrates another bug in Swing that does not have a known workaround: the WorldWindow does not
  * resize when a vertical split-pane's one-touch-expand widget is clicked if that split-pane contains a horizontal
  * split-plane that contains the WorldWindow. If the one-touch widget is clicked on the bottom pane of this example,
@@ -125,7 +125,7 @@ public class SplitPaneUsage
 
     public static void main(String[] args)
     {
-        start("World Wind Split Pane Usage");
+        start("WorldWind Split Pane Usage");
     }
 
     public static void start(String appName)

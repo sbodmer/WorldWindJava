@@ -10,7 +10,7 @@ import gov.nasa.worldwind.geom.*;
 import gov.nasa.worldwind.layers.*;
 import gov.nasa.worldwind.render.*;
 
-import javax.media.opengl.*;
+import com.jogamp.opengl.*;
 import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.event.*;
@@ -341,6 +341,6 @@ public class PickFrustum extends ApplicationTemplate
 
     public static void main(String[] args)
     {
-        ApplicationTemplate.start("World Wind Picking Frustum", AppFrame.class);
+        ApplicationTemplate.start("WorldWind Picking Frustum", AppFrame.class);
     }
 }

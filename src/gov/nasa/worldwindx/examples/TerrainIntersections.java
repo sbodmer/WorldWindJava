@@ -24,17 +24,17 @@ import java.util.concurrent.*;
 /**
  * Shows how to compute terrain intersections using the highest resolution terrain data available from a globe's
  * elevation model.
- * <p/>
+ * <p>
  * To generate and show intersections, Shift + LeftClick anywhere on the globe. The program forms a grid of locations
  * around the selected location. The grid points are shown in yellow. It then determines whether a line between the
  * selected location and each grid point intersects the terrain. If it does, the intersection nearest the selected
  * location is shown in cyan and a line is drawn from the selected location to the intersection. If there is no
  * intersection, a line is drawn from the selected location to the grid position.
- * <p/>
+ * <p>
  * If the highest resolution terrain is not available for the area around the selected location, it is retrieved from
  * the elevation model's source, which is most likely a remote server. Since the high-res data must be retrieved and
  * then loaded from the local disk cache, it will take some time to compute and show the intersections.
- * <p/>
+ * <p>
  * This example uses a {@link gov.nasa.worldwind.terrain.Terrain} object to perform the terrain retrieval, generation
  * and intersection calculations.s
  *
@@ -209,7 +209,7 @@ public class TerrainIntersections extends ApplicationTemplate
                 return;
             this.lastTime = System.currentTimeMillis();
 
-            // On the EDT, update the progress bar and if calculations are complete, update the World Window.
+            // On the EDT, update the progress bar and if calculations are complete, update the WorldWindow.
             SwingUtilities.invokeLater(new Runnable()
             {
                 public void run()
@@ -228,7 +228,7 @@ public class TerrainIntersections extends ApplicationTemplate
             });
         }
 
-        /** Updates the World Wind model with the new intersection locations and sight lines. */
+        /** Updates the WorldWind model with the new intersection locations and sight lines. */
         protected void showResults()
         {
             this.showIntersections(firstIntersectionPositions);
@@ -540,6 +540,6 @@ public class TerrainIntersections extends ApplicationTemplate
         Configuration.setValue(AVKey.INITIAL_LONGITUDE, -119.7761d);
 
         // Adjust configuration values before instantiation
-        ApplicationTemplate.start("World Wind Terrain Intersections", AppFrame.class);
+        ApplicationTemplate.start("WorldWind Terrain Intersections", AppFrame.class);
     }
 }

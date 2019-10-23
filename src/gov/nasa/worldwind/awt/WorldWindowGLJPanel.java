@@ -14,34 +14,34 @@ import gov.nasa.worldwind.geom.Position;
 import gov.nasa.worldwind.pick.PickedObjectList;
 import gov.nasa.worldwind.util.*;
 
-import javax.media.opengl.*;
-import javax.media.opengl.awt.GLJPanel;
+import com.jogamp.opengl.*;
+import com.jogamp.opengl.awt.GLJPanel;
 import java.beans.*;
 import java.util.*;
 
 /**
- * <code>WorldWindowGLCanvas</code> is a lightweight Swing component for displaying World Wind {@link Model}s (globe and
+ * <code>WorldWindowGLCanvas</code> is a lightweight Swing component for displaying WorldWind {@link Model}s (globe and
  * layers). It's a self-contained component intended to serve as an application's <code>WorldWindow</code>. Construction
  * options exist to specify a specific graphics device and to share graphics resources with another graphics device.
- * <p/>
+ * <p>
  * Note: The Java SDK for OpenGL (JOGL) support for the underlying {@link GLJPanel} that this class uses has
  * historically been problematic. It works well on some devices but not on others, and its performance varies much more
  * among devices than that of its heavyweight counterpart, {@link WorldWindowGLCanvas}. It's therefore best to use the
  * heavyweight component if possible. You can find detailed information on this issue in the <em>Heavyweight and
  * Lightweight Issues</em> section of the <a href="http://download.java.net/media/jogl/doc/userguide/">"JOGL User's
  * Guide"</a>
- * <p/>
+ * <p>
  * This class is capable of supporting stereo devices. To cause a stereo device to be selected and used, specify the
  * Java VM property "gov.nasa.worldwind.stereo.mode=device" prior to creating an instance of this class. A stereo
  * capable {@link SceneController} such as {@link gov.nasa.worldwind.StereoSceneController} must also be specified in
- * the World Wind {@link Configuration}. The default configuration specifies a stereo-capable controller. To prevent
+ * the WorldWind {@link Configuration}. The default configuration specifies a stereo-capable controller. To prevent
  * stereo from being used by subsequently opened {@code WorldWindowGLCanvas}es, set the property to a an empty string,
- * "". If a stereo device cannot be selected and used, this falls back to a non-stereo device that supports World Wind's
+ * "". If a stereo device cannot be selected and used, this falls back to a non-stereo device that supports WorldWind's
  * minimum requirements.
- * <p/>
+ * <p>
  * Under certain conditions, JOGL replaces the <code>GLContext</code> associated with instances of this class. This then
  * necessitates that all resources such as textures that have been stored on the graphic devices must be regenerated for
- * the new context. World Wind does this automatically by clearing the associated {@link GpuResourceCache}. Objects
+ * the new context. WorldWind does this automatically by clearing the associated {@link GpuResourceCache}. Objects
  * subsequently rendered automatically re-create those resources. If an application creates its own graphics resources,
  * including textures, vertex buffer objects and display lists, it must store them in the <code>GpuResourceCache</code>
  * associated with the current {@link gov.nasa.worldwind.render.DrawContext} so that they are automatically cleared, and
@@ -71,6 +71,7 @@ public class WorldWindowGLJPanel extends GLJPanel implements WorldWindow, Proper
             this.createView();
             this.createDefaultInputHandler();
             WorldWind.addPropertyChangeListener(WorldWind.SHUTDOWN_EVENT, this);
+            WorldWindowImpl.configureIdentityPixelScale(this);
             this.wwd.endInitialization();
         }
         catch (Exception e)
@@ -87,8 +88,7 @@ public class WorldWindowGLJPanel extends GLJPanel implements WorldWindow, Proper
      *
      * @param shareWith a <code>WorldWindow</code> with which to share graphics resources.
      *
-     * @see GLJPanel#GLJPanel(javax.media.opengl.GLCapabilitiesImmutable, javax.media.opengl.GLCapabilitiesChooser,
-     *      javax.media.opengl.GLContext)
+     * @see GLJPanel#GLJPanel(GLCapabilitiesImmutable, GLCapabilitiesChooser)
      */
     public WorldWindowGLJPanel(WorldWindow shareWith)
     {
@@ -109,6 +109,7 @@ public class WorldWindowGLJPanel extends GLJPanel implements WorldWindow, Proper
             this.createView();
             this.createDefaultInputHandler();
             WorldWind.addPropertyChangeListener(WorldWind.SHUTDOWN_EVENT, this);
+            WorldWindowImpl.configureIdentityPixelScale(this);
             this.wwd.endInitialization();
         }
         catch (Exception e)
@@ -130,8 +131,7 @@ public class WorldWindowGLJPanel extends GLJPanel implements WorldWindow, Proper
      * @param chooser      a chooser object that customizes the specified capabilities. May be null, in which case a
      *                     default chooser is used.
      *
-     * @see GLJPanel#GLJPanel(javax.media.opengl.GLCapabilitiesImmutable, javax.media.opengl.GLCapabilitiesChooser,
-     *      javax.media.opengl.GLContext)
+     * @see GLJPanel#GLJPanel(GLCapabilitiesImmutable, GLCapabilitiesChooser)
      */
     public WorldWindowGLJPanel(WorldWindow shareWith, GLCapabilities capabilities,
         GLCapabilitiesChooser chooser)
@@ -153,6 +153,7 @@ public class WorldWindowGLJPanel extends GLJPanel implements WorldWindow, Proper
             this.createView();
             this.createDefaultInputHandler();
             WorldWind.addPropertyChangeListener(WorldWind.SHUTDOWN_EVENT, this);
+            WorldWindowImpl.configureIdentityPixelScale(this);
             this.wwd.endInitialization();
         }
         catch (Exception e)

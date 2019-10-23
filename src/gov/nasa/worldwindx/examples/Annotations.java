@@ -15,7 +15,7 @@ import gov.nasa.worldwind.render.*;
 import gov.nasa.worldwind.util.*;
 import gov.nasa.worldwindx.examples.util.PowerOfTwoPaddedImage;
 
-import javax.media.opengl.*;
+import com.jogamp.opengl.*;
 import javax.swing.*;
 import javax.swing.Box;
 import javax.swing.border.*;
@@ -26,7 +26,7 @@ import java.awt.image.*;
 import java.net.URL;
 
 /**
- * Illustrates how to use a World Wind <code>{@link Annotation}</code> to display on-screen information to the user in
+ * Illustrates how to use a WorldWind <code>{@link Annotation}</code> to display on-screen information to the user in
  * the form of a text label with an optional image. Annotations may be attached to a geographic position or a point on
  * the screen. They provide support for multi-line text, simple HTML text markup, and many styling attributes such as
  * font face, size and colors, background shape and background image.
@@ -1885,6 +1885,6 @@ public class Annotations extends ApplicationTemplate
 
     public static void main(String[] args)
     {
-        ApplicationTemplate.start("World Wind Annotations", AppFrame.class);
+        ApplicationTemplate.start("WorldWind Annotations", AppFrame.class);
     }
 }

@@ -13,7 +13,7 @@ import gov.nasa.worldwind.geom.*;
 import gov.nasa.worldwind.globes.Globe;
 import gov.nasa.worldwind.util.*;
 
-import javax.media.opengl.GL2;
+import com.jogamp.opengl.GL2;
 import java.awt.*;
 import java.awt.geom.*;
 import java.util.Arrays;
@@ -123,7 +123,7 @@ public class SurfaceText extends AbstractSurfaceObject implements GeographicText
 
         this.text = text;
         this.textBounds = null; // Need to recompute bounds
-        this.updateModifiedTime();
+        this.onShapeChanged();
     }
 
     /** {@inheritDoc} */
@@ -134,7 +134,7 @@ public class SurfaceText extends AbstractSurfaceObject implements GeographicText
 
     /**
      * {@inheritDoc}
-     * <p/>
+     * <p>
      * The offset determines how the text is placed relative to this position. The default offset centers the text on
      * the position both horizontally and vertically.
      *
@@ -150,7 +150,7 @@ public class SurfaceText extends AbstractSurfaceObject implements GeographicText
         }
 
         this.location = position;
-        this.updateModifiedTime();
+        this.onShapeChanged();
     }
 
     /** {@inheritDoc} */
@@ -174,7 +174,7 @@ public class SurfaceText extends AbstractSurfaceObject implements GeographicText
         {
             this.font = font;
             this.textBounds = null; // Need to recompute bounds
-            this.updateModifiedTime();
+            this.onShapeChanged();
         }
     }
 
@@ -197,7 +197,7 @@ public class SurfaceText extends AbstractSurfaceObject implements GeographicText
         if (!color.equals(this.color))
         {
             this.color = color;
-            this.updateModifiedTime();
+            this.onShapeChanged();
         }
     }
 
@@ -220,7 +220,7 @@ public class SurfaceText extends AbstractSurfaceObject implements GeographicText
         if (bgColor == null || !bgColor.equals(background))
         {
             this.bgColor = background;
-            this.updateModifiedTime();
+            this.onShapeChanged();
         }
     }
 
@@ -252,7 +252,7 @@ public class SurfaceText extends AbstractSurfaceObject implements GeographicText
      * Specifies a location relative to the label position at which to align the label. The label text begins at the
      * point indicated by the offset. An offset of (0, 0) aligns the left baseline of the text with the position. An
      * offset of (-0.5, -0.5) fraction aligns the center of the text with the position.
-     * <p/>
+     * <p>
      * A pixel based offset is interpreted based on the geographic size of the text. For example, if the text rendered
      * "normally" in two dimensions would be 20 pixels tall, and the geographic text is 100 meters tall, then each pixel
      * of text corresponds to 5 meters. So an offset of 2 pixels would correspond to a geographic offset of 10 meters.
@@ -271,7 +271,7 @@ public class SurfaceText extends AbstractSurfaceObject implements GeographicText
         if (!offset.equals(this.offset))
         {
             this.offset = offset;
-            this.updateModifiedTime();
+            this.onShapeChanged();
         }
     }
 

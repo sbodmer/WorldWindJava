@@ -19,7 +19,7 @@ import java.awt.event.*;
  * This application shows the {@link gov.nasa.worldwind.layers.TerrainProfileLayer} in action with its various controls.
  * It allows you to view a real-time section profile graph for any place on the planet, at any scale - continent,
  * country or mountain range - just by moving the mouse.
- * <p/>
+ * <p>
  * It proves particularly useful to explore the ocean floors where the bathymetry data reveals important geologic
  * features.
  *
@@ -257,6 +257,6 @@ public class TerrainProfiler extends ApplicationTemplate
 
     public static void main(String[] args)
     {
-        ApplicationTemplate.start("World Wind Terrain Profiler", AppFrame.class);
+        ApplicationTemplate.start("WorldWind Terrain Profiler", AppFrame.class);
     }
 }

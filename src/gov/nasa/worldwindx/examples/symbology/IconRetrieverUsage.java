@@ -18,7 +18,7 @@ import java.awt.image.*;
 /**
  * Example of using {@link IconRetriever} to retrieve the icon for a MIL-STD-2525C symbol. This example retrieves
  * several symbology icons as BufferedImages and displays them in a JFrame. See the <a
- * href="https://goworldwind.org/developers-guide/symbology/iconretriever/" target="_blank">Icon Retriever Usage
+ * href="https://worldwind.arc.nasa.gov/java/tutorials/icon-retriever/" target="_blank">Icon Retriever Usage
  * Guide</a> for more information on using IconRetriever.
  *
  * @author pabercrombie
@@ -96,7 +96,7 @@ public class IconRetrieverUsage
     {
         if (Configuration.isMacOS())
         {
-            System.setProperty("com.apple.mrj.application.apple.menu.about.name", "World Wind Icon Retriever");
+            System.setProperty("com.apple.mrj.application.apple.menu.about.name", "WorldWind Icon Retriever");
         }
 
         SwingUtilities.invokeLater(new Runnable()
@@ -106,7 +106,7 @@ public class IconRetrieverUsage
                 // Create an AppFrame and immediately make it visible. As per Swing convention, this
                 // is done within an invokeLater call so that it executes on an AWT thread.
                 JFrame appFrame = new AppFrame();
-                appFrame.setTitle("World Wind Icon Retriever");
+                appFrame.setTitle("WorldWind Icon Retriever");
                 appFrame.setVisible(true);
                 appFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             }

@@ -21,7 +21,7 @@ import java.awt.*;
  * Illustrates how to use the {@link gov.nasa.worldwind.util.PlacemarkClutterFilter} to declutter PointPlacemark labels.
  * To enable this decluttering a filter has to be specified to the scene controller and each PointPlacemark that
  * participates in decluttering must be enabled for decluttering.
- * <p/>
+ * <p>
  * This example also enables label picking for all PointPlacemarks to illustrate that labels can be picked both when
  * they're not decluttered and when they are.
  *
@@ -242,6 +242,6 @@ public class PlacemarkDecluttering extends ApplicationTemplate
 
     public static void main(String[] args)
     {
-        ApplicationTemplate.start("World Wind Placemark Decluttering", AppFrame.class);
+        ApplicationTemplate.start("WorldWind Placemark Decluttering", AppFrame.class);
     }
 }

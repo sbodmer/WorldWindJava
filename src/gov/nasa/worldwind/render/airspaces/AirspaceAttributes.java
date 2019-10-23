@@ -9,10 +9,10 @@ package gov.nasa.worldwind.render.airspaces;
 import gov.nasa.worldwind.render.*;
 
 /**
- * Holds common attributes for World Wind {@link Airspace} shapes. AirspaceAttributes was originally designed as a
+ * Holds common attributes for WorldWind {@link Airspace} shapes. AirspaceAttributes was originally designed as a
  * special purpose attribute bundle for Airspace, but is now a redundant subinterface of {@link
  * gov.nasa.worldwind.render.ShapeAttributes}. AirspaceAttributes is still used by Airspace shapes to ensure backward
- * compatibility with earlier versions of World Wind. Usage of methods unique to AirspaceAttributes should be replaced
+ * compatibility with earlier versions of WorldWind. Usage of methods unique to AirspaceAttributes should be replaced
  * with the equivalent methods in ShapeAttributes.
  *
  * @author dcollins
@@ -71,7 +71,7 @@ public interface AirspaceAttributes extends ShapeAttributes
      * @param enableMaterial true to set OpenGL material state, false to set OpenGL color state.
      *
      * @throws IllegalArgumentException if the drawing context is null.
-     * @deprecated Use {@link Material#apply(javax.media.opengl.GL2, int)} or make OpenGL state changes directly.
+     * @deprecated Use {@link Material#apply(com.jogamp.opengl.GL2, int)} or make OpenGL state changes directly.
      */
     void applyInterior(DrawContext dc, boolean enableMaterial);
 
@@ -84,7 +84,7 @@ public interface AirspaceAttributes extends ShapeAttributes
      * @param enableMaterial true to set OpenGL material state, false to set OpenGL color state.
      *
      * @throws IllegalArgumentException if the drawing context is null.
-     * @deprecated Use {@link Material#apply(javax.media.opengl.GL2, int)} or make OpenGL state changes directly.
+     * @deprecated Use {@link Material#apply(com.jogamp.opengl.GL2, int)} or make OpenGL state changes directly.
      */
     void applyOutline(DrawContext dc, boolean enableMaterial);
 }

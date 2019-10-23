@@ -32,33 +32,31 @@ import java.util.*;
 import java.util.zip.*;
 
 /**
- * Illustrates runtime construction of 3D extruded polygons and spheres using World Wind <code>{@link Airspace}</code>
+ * Illustrates runtime construction of 3D extruded polygons and spheres using WorldWind <code>{@link Airspace}</code>
  * shapes. This uses a <code>{@link PolygonEditor}</code> and a <code>{@link SphereAirspaceEditor}</code> to enable
  * runtime editing of <code>{@link Polygon}</code> airspace and <code>{@link SphereAirspace}</code> shapes.
- * <p/>
  * <h1>Usage Instructions</h1>
- * <p/>
- * <strong>Adding and Removing Shapes</strong> <br/> Add a shape by selecting either <code>Polygon</code> or
+ * <p>
+ * <strong>Adding and Removing Shapes</strong> <br> Add a shape by selecting either <code>Polygon</code> or
  * <code>Sphere</code> in the drop down box then clicking <code>New shape</code>. Delete a shape by left-clicking it
  * then pressing the <code>delete</code> key.
- * <p/>
- * <strong>Moving Shapes</strong/> <br/> Move a shape by left-clicking and dragging it.
- * <p/>
- * <strong>Editing Spheres</strong> <br/> <i>Note: a sphere must be selected before it can be edited. Select a sphere by
- * left-clicking it.</i> </br> Adjust a sphere's height by holding the <code>Shift</code> key then left-click and drag
+ * <p>
+ * <strong>Moving Shapes</strong> <br> Move a shape by left-clicking and dragging it.
+ * <p>
+ * <strong>Editing Spheres</strong> <br> <i>Note: a sphere must be selected before it can be edited. Select a sphere by
+ * left-clicking it.</i> <br> Adjust a sphere's height by holding the <code>Shift</code> key then left-click and drag
  * the sphere. Resize a sphere by moving the cursor toward the sphere's edge until a blue control point appears, then
  * left-click and drag the control point.
- * <p/>
- * <strong>Editing Polygons</strong> <br/> <i>Note: a polygon must be selected before it can be edited. Select a polygon
- * by left-clicking it.</i> </br> Add a polygon vertex by holding the <code>Alt</code> key and left-clicking anywhere
+ * <p>
+ * <strong>Editing Polygons</strong> <br> <i>Note: a polygon must be selected before it can be edited. Select a polygon
+ * by left-clicking it.</i> <br> Add a polygon vertex by holding the <code>Alt</code> key and left-clicking anywhere
  * near the polygon. Remove a polygon control point by holding the <code>Control</code> key and left-clicking the blue
  * sphere at the vertex. Move a polygon vertex by left-clicking and dragging it. Change a polygon's bottom or top height
  * by holding the <code>Shift</code> key then left-click any blue sphere at a vertex and drag it.
- * <p/>
  * <h1>Demo Shapes</h1>
- * <p/>
- * Select <code>File -> Load Demo Shapes</code> to display a set of polygon airspace shapes built with this editor. The
- * data for these shapes is located in the World Wind project under src/gov/nasa/worldwindx/examples/data/AirspaceBuilder-DemoShapes.zip.
+ * <p>
+ * Select <code>File -&gt; Load Demo Shapes</code> to display a set of polygon airspace shapes built with this editor. The
+ * data for these shapes is located in the WorldWind project under src/gov/nasa/worldwindx/examples/data/AirspaceBuilder-DemoShapes.zip.
  *
  * @author dcollins
  * @version $Id: AirspaceBuilder.java 2231 2014-08-15 19:03:12Z dcollins $
@@ -1611,6 +1609,6 @@ public class AirspaceBuilder extends ApplicationTemplate
 
     public static void main(String[] args)
     {
-        ApplicationTemplate.start("World Wind Airspace Builder", AppFrame.class);
+        ApplicationTemplate.start("WorldWind Airspace Builder", AppFrame.class);
     }
 }

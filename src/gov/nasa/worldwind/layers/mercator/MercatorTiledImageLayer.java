@@ -15,7 +15,7 @@ import gov.nasa.worldwind.retrieve.*;
 import gov.nasa.worldwind.util.*;
 
 import javax.imageio.ImageIO;
-import javax.media.opengl.*;
+import com.jogamp.opengl.*;
 import java.awt.*;
 import java.awt.geom.*;
 import java.awt.image.*;
@@ -201,7 +201,7 @@ public abstract class MercatorTiledImageLayer extends AbstractLayer
         Angle latOrigin = this.levels.getTileOrigin().getLatitude();
         Angle lonOrigin = this.levels.getTileOrigin().getLongitude();
 
-        // Determine the row and column offset from the common World Wind global tiling origin.
+        // Determine the row and column offset from the common WorldWind global tiling origin.
         int firstRow = Tile.computeRow(dLat, sector.getMinLatitude(), latOrigin);
         int firstCol = Tile.computeColumn(dLon, sector.getMinLongitude(), lonOrigin);
         int lastRow = Tile.computeRow(dLat, sector.getMaxLatitude(), latOrigin);

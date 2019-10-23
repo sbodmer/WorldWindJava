@@ -11,7 +11,7 @@ import gov.nasa.worldwind.event.*;
 import gov.nasa.worldwind.pick.*;
 import gov.nasa.worldwind.util.Logging;
 
-import javax.media.opengl.awt.GLJPanel;
+import com.jogamp.opengl.awt.GLJPanel;
 import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -372,7 +372,7 @@ public class AWTInputHandler extends WWObjectImpl
         }
 
         // Determine if the mouse point has changed since the last mouse move event. This can happen if user switches to
-        // another window, moves the mouse, and then switches back to the World Wind window.
+        // another window, moves the mouse, and then switches back to the WorldWind window.
         boolean mousePointChanged = !mouseEvent.getPoint().equals(this.mousePoint);
 
         this.mousePoint = mouseEvent.getPoint();

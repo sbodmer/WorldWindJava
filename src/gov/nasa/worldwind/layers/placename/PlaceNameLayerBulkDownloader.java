@@ -18,9 +18,9 @@ import java.nio.ByteBuffer;
 import java.util.*;
 
 /**
- * Downloads placenames not currently available in the World Wind file cache or a specified {@link FileStore}. The class
+ * Downloads placenames not currently available in the WorldWind file cache or a specified {@link FileStore}. The class
  * derives from {@link Thread} and is meant to operate in its own thread.
- * <p/>
+ * <p>
  * The sector and resolution associated with the downloader are specified during construction and are final.
  *
  * @author tag
@@ -36,8 +36,8 @@ public class PlaceNameLayerBulkDownloader extends BulkRetrievalThread
     protected long pollDelay = RETRIEVAL_SERVICE_POLL_DELAY;
 
     /**
-     * Constructs a downloader to retrieve placenames not currently available in the World Wind file cache.
-     * <p/>
+     * Constructs a downloader to retrieve placenames not currently available in the WorldWind file cache.
+     * <p>
      * The thread returned is not started during construction, the caller must start the thread.
      *
      * @param layer      the layer for which to download placenames.
@@ -60,7 +60,7 @@ public class PlaceNameLayerBulkDownloader extends BulkRetrievalThread
     /**
      * Constructs a downloader to retrieve placenames not currently available in a specified file store and places it
      * there.
-     * <p/>
+     * <p>
      * The thread returned is not started during construction, the caller must start the thread.
      *
      * @param layer      the layer for which to download placenames.

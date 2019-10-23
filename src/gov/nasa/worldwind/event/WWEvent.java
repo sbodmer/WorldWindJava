@@ -8,7 +8,7 @@ package gov.nasa.worldwind.event;
 import java.util.EventObject;
 
 /**
- * WWEvent is the base class which all World Wind event objects derive from. It extends Java's base {@link
+ * WWEvent is the base class which all WorldWind event objects derive from. It extends Java's base {@link
  * java.util.EventObject} by adding the capability to consume the event by calling {@link #consume()}. Consuming a
  * WWEvent prevents is from being processed in the default manner by the source that originated the event. If the event
  * cannot be consumed, calling {@code consume()} has no effect, though {@link #isConsumed()} returns whether or not
@@ -45,7 +45,7 @@ public class WWEvent extends EventObject
 
     /**
      * Returns whether or not the event has been consumed.
-     * <p/>
+     * <p>
      * Note: if the event cannot be consumed, this still returns {@code true} if {@link #consume()} has been called,
      * though this has no effect.
      *

@@ -88,7 +88,7 @@ public class LayerManagerLayer extends RenderableLayer implements SelectListener
         this.annotation.getAttributes().setBorderWidth(1);
         this.addRenderable(this.annotation);
 
-        // Listen to world window for select event
+        // Listen to WorldWindow for select event
         this.wwd.addSelectListener(this);
     }
 
@@ -397,7 +397,7 @@ public class LayerManagerLayer extends RenderableLayer implements SelectListener
      * Determines whether the layer list frame is minimized. When minimized, the layer list only contains itself as the
      * only item, and thus shrinks toward it's corner position.
      *
-     * @return <ode>true</code> if the layer list frame is minimized.
+     * @return <code>true</code> if the layer list frame is minimized.
      */
     public boolean isMinimized()
     {
@@ -408,7 +408,7 @@ public class LayerManagerLayer extends RenderableLayer implements SelectListener
      * Set the layer list frame to be minimized. When minimized, the layer list only contains itself as the only item,
      * and thus shrinks toward it's corner position.
      *
-     * @param minimized <ode>true</code> if the layer list frame sould be minimized.
+     * @param minimized <code>true</code> if the layer list frame sould be minimized.
      */
     public void setMinimized(boolean minimized)
     {
@@ -418,7 +418,7 @@ public class LayerManagerLayer extends RenderableLayer implements SelectListener
 
     /**
      * Determines whether the layer list can be moved or dragged with the mouse cursor.
-     * <p/>
+     * <p>
      * If enabled, dragging the frame will result in a change to it's location offset - {@link
      * #setLocationOffset(Vec4)}. If the list is also set to snap to corners - {@link #setSnapToCorners(boolean)}, the
      * frame position may change so as to be attached to the nearest corner - see {@link #setPosition(String)}.
@@ -432,7 +432,7 @@ public class LayerManagerLayer extends RenderableLayer implements SelectListener
 
     /**
      * Sets whether the layer list can be moved or dragged with the mouse cursor.
-     * <p/>
+     * <p>
      * If enabled, dragging the frame will result in a change to it's location offset - {@link
      * #setLocationOffset(Vec4)}. If the list is also set to snap to corners - {@link #setSnapToCorners(boolean)}, the
      * frame position may change so as to be attached to the nearest corner - see {@link #setPosition(String)}.
@@ -468,7 +468,7 @@ public class LayerManagerLayer extends RenderableLayer implements SelectListener
 
     /**
      * Determines whether the layer list snaps to the viewport sides and corners while being dragged.
-     * <p/>
+     * <p>
      * Dragging the layer list frame will result in a change to it's location offset - {@link #setLocationOffset(Vec4)}.
      * If the list is also set to snap to corners - {@link #setSnapToCorners(boolean)}, the frame position may change so
      * as to be attached to the nearest corner - see {@link #setPosition(String)}.
@@ -482,7 +482,7 @@ public class LayerManagerLayer extends RenderableLayer implements SelectListener
 
     /**
      * Sets whether the layer list snaps to the viewport sides and corners while being dragged.
-     * <p/>
+     * <p>
      * Dragging the layer list frame will result in a change to it's location offset - {@link #setLocationOffset(Vec4)}.
      * If the list is also set to snap to corners the frame position may change so as to be attached to the nearest
      * corner - see {@link #setPosition(String)}.
@@ -584,7 +584,7 @@ public class LayerManagerLayer extends RenderableLayer implements SelectListener
                 {
                     boolean wasDraggingLayer = this.draggingLayer;
                     this.drag(event);
-                    // Update list if dragging a layer, otherwise just redraw the world window
+                    // Update list if dragging a layer, otherwise just redraw the WorldWindow
                     if (this.draggingLayer || wasDraggingLayer)
                         update = true;
                     else
@@ -772,7 +772,7 @@ public class LayerManagerLayer extends RenderableLayer implements SelectListener
     /**
      * Change the annotation appearance according to the given highlighted state.
      *
-     * @param highlighted <ode>true</code> if the annotation should appear highlighted.
+     * @param highlighted <code>true</code> if the annotation should appear highlighted.
      */
     protected void highlight(boolean highlighted)
     {

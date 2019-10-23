@@ -16,8 +16,8 @@ import gov.nasa.worldwind.render.ScreenCreditController;
 import gov.nasa.worldwind.util.*;
 import gov.nasa.worldwind.util.dashboard.DashboardController;
 
-import javax.media.opengl.*;
-import javax.media.opengl.awt.AWTGLAutoDrawable;
+import com.jogamp.opengl.*;
+import com.jogamp.opengl.awt.AWTGLAutoDrawable;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -27,7 +27,7 @@ import java.util.logging.Level;
 
 /**
  * A non-platform specific {@link WorldWindow} class. This class can be aggregated into platform-specific classes to
- * provide the core functionality of World Wind.
+ * provide the core functionality of WorldWind.
  *
  * @author Tom Gaskins
  * @version $Id: WorldWindowGLAutoDrawable.java 2047 2014-06-06 22:48:33Z tgaskins $
@@ -236,7 +236,7 @@ public class WorldWindowGLAutoDrawable extends WorldWindowImpl implements WorldW
         // 1) As of November 2012, we cannot find any evidence that the GL_ARB_texture_non_power_of_two extension is
         //    problematic on Mac OS X machines with ATI graphics cards. The texture rectangle extension is more limiting
         //    than the NPOT extension, and therefore not preferred.
-        // 2) World Wind assumes that a texture's target is always GL_TEXTURE_2D, and therefore incorrectly displays
+        // 2) WorldWind assumes that a texture's target is always GL_TEXTURE_2D, and therefore incorrectly displays
         //    textures with the target GL_TEXTURE_RECTANGLE.
         TextureIO.setTexRectEnabled(false);
 
@@ -255,15 +255,14 @@ public class WorldWindowGLAutoDrawable extends WorldWindowImpl implements WorldW
 
     /**
      * See {@link GLEventListener#init(GLAutoDrawable)}.
-     * <p/>
+     * <p>
      * GLEventListener's dispose method indicates that the GL context has been released, and provides the listener an
      * opportunity to clean up any resources. Dispose does not imply that the component's lifecycle has ended or that
      * the application is closing. There are three cases in which dispose may be called:
-     * <p/>
      * <ul> <li>The WorldWindow is removed from its parent component.</li> <li>The WorldWindow's parent frame is
      * closed.</li> <li>The application calls either GLCanvas.dispose or GLJPanel.dispose.</li> </ul>
-     * <p/>
-     * This implementation is left empty. In the case when a WorldWindow or a World Wind application has reached its end
+     * <p>
+     * This implementation is left empty. In the case when a WorldWindow or a WorldWind application has reached its end
      * of life, its resources should be released by calling {@link gov.nasa.worldwind.WorldWindow#shutdown()} or {@link
      * gov.nasa.worldwind.WorldWind#shutDown()}, respectively. In the case when a WorldWindow is removed from its parent
      * frame or that frame is closed without a call to shutdown, it is assumed that the application intends to reuse the
@@ -530,7 +529,7 @@ public class WorldWindowGLAutoDrawable extends WorldWindowImpl implements WorldW
 
     /**
      * {@inheritDoc}
-     * <p/>
+     * <p>
      * Forward the message event to the Model for distribution to the layers.
      *
      * @param msg Message event.

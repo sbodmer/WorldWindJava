@@ -16,11 +16,11 @@ import gov.nasa.worldwindx.examples.util.RandomShapeAttributes;
 import java.util.Arrays;
 
 /**
- * Illustrates how to configure and display World Wind <code>{@link Airspace}</code> shapes. Airspace shapes are
+ * Illustrates how to configure and display WorldWind <code>{@link Airspace}</code> shapes. Airspace shapes are
  * extruded 3D volumes defined by geographic coordinates and upper- and lower- altitude boundaries. The interior of
  * airspace shapes always conforms to the curvature of the globe, and optionally also conform to the underlying
  * terrain.
- * <p/>
+ * <p>
  * This shows how to use all 11 types of standard airspace shapes: <ul> <li><code>{@link Orbit}</code> - a rectangle
  * with rounded end caps.</li> <li><code>{@link Curtain}</code> - a vertically extruded wall.</li> <li><code>{@link
  * Polygon}</code> - a vertically extruded polygon.</li> <li><code>{@link PolyArc}</code> - a vertically extruded
@@ -445,7 +445,7 @@ public class Airspaces extends ApplicationTemplate
 
     public static void main(String[] args)
     {
-        start("World Wind Airspaces", AppFrame.class);
+        start("WorldWind Airspaces", AppFrame.class);
     }
 
     protected static Iterable<LatLon> makeLatLon(double[] src)

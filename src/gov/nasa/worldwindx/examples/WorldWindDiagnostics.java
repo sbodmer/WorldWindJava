@@ -7,8 +7,8 @@ package gov.nasa.worldwindx.examples;
 
 import gov.nasa.worldwind.Configuration;
 
-import javax.media.opengl.*;
-import javax.media.opengl.awt.GLCanvas;
+import com.jogamp.opengl.*;
+import com.jogamp.opengl.awt.GLCanvas;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -117,7 +117,7 @@ public class WorldWindDiagnostics
             }
 
             sb.append("\nJOGL Values\n");
-            String pkgName = "javax.media.opengl";
+            String pkgName = "com.jogamp.opengl";
             try
             {
                 getClass().getClassLoader().loadClass(pkgName + ".GL");
@@ -263,7 +263,7 @@ public class WorldWindDiagnostics
         if (Configuration.isMacOS())
         {
             System.setProperty("apple.laf.useScreenMenuBar", "true");
-            System.setProperty("com.apple.mrj.application.apple.menu.about.name", "World Wind Diagnostic Program");
+            System.setProperty("com.apple.mrj.application.apple.menu.about.name", "WorldWind Diagnostic Program");
             System.setProperty("com.apple.mrj.application.growbox.intrudes", "false");
         }
     }

@@ -6,11 +6,11 @@
 
 package gov.nasa.worldwindx.examples;
 
-import javax.media.opengl.*;
-import javax.media.opengl.awt.GLCanvas;
+import com.jogamp.opengl.*;
+import com.jogamp.opengl.awt.GLCanvas;
 
 /**
- * Determines whether a device supports the OpenGL features necessary for World Wind.
+ * Determines whether a device supports the OpenGL features necessary for WorldWind.
  *
  * @author tag
  * @version $Id: OpenGLSupportTest.java 1675 2013-10-18 00:32:15Z tgaskins $

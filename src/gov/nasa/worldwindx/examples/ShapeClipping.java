@@ -22,9 +22,9 @@ import java.awt.event.*;
 
 /**
  * Shows how to use the {@link gov.nasa.worldwind.util.combine.Combinable} interface and the {@link
- * gov.nasa.worldwind.util.combine.ShapeCombiner} class to compute the intersection of a World Wind surface shapes with
+ * gov.nasa.worldwind.util.combine.ShapeCombiner} class to compute the intersection of a WorldWind surface shapes with
  * Earth's land and water.
- * <p/>
+ * <p>
  * This example provides an editable surface circle indicating a region to clip against either land or water. The land
  * and water are represented by an ESRI shapefile containing polygons of Earth's continents, including major islands.
  * Clipping against land is accomplished by computing the intersection of the surface circle and the shapefile polygons.
@@ -172,6 +172,6 @@ public class ShapeClipping extends ApplicationTemplate
 
     public static void main(String[] args)
     {
-        start("World Wind Shape Clipping", AppFrame.class);
+        start("WorldWind Shape Clipping", AppFrame.class);
     }
 }

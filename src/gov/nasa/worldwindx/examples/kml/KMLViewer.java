@@ -86,7 +86,7 @@ public class KMLViewer extends ApplicationTemplate
             // KML feature balloons when feature's are selected in the on-screen layer tree.
             this.kmlAppController.setBalloonController(balloonController);
 
-            // Size the World Window to take up the space typically used by the layer panel.
+            // Size the WorldWindow to take up the space typically used by the layer panel.
             Dimension size = new Dimension(1400, 800);
             this.setPreferredSize(size);
             this.pack();
@@ -109,7 +109,7 @@ public class KMLViewer extends ApplicationTemplate
          * Adds the specified <code>kmlRoot</code> to this app frame's <code>WorldWindow</code> as a new
          * <code>Layer</code>, and adds a new <code>KMLLayerTreeNode</code> for the <code>kmlRoot</code> to this app
          * frame's on-screen layer tree.
-         * <p/>
+         * <p>
          * This expects the <code>kmlRoot</code>'s <code>AVKey.DISPLAY_NAME</code> field to contain a display name
          * suitable for use as a layer name.
          *
@@ -117,7 +117,7 @@ public class KMLViewer extends ApplicationTemplate
          */
         protected void addKMLLayer(KMLRoot kmlRoot)
         {
-            // Create a KMLController to adapt the KMLRoot to the World Wind renderable interface.
+            // Create a KMLController to adapt the KMLRoot to the WorldWind renderable interface.
             KMLController kmlController = new KMLController(kmlRoot);
 
             // Adds a new layer containing the KMLRoot to the end of the WorldWindow's layer list. This
@@ -187,7 +187,7 @@ public class KMLViewer extends ApplicationTemplate
          * then adds the new <code>KMLRoot</code> to this worker thread's <code>AppFrame</code>. The
          * <code>KMLRoot</code>'s <code>AVKey.DISPLAY_NAME</code> field contains a display name created from either the
          * KML source or the KML root feature name.
-         * <p/>
+         * <p>
          * If loading the KML source fails, this prints the exception and its stack trace to the standard error stream,
          * but otherwise does nothing.
          */
@@ -312,6 +312,6 @@ public class KMLViewer extends ApplicationTemplate
     public static void main(String[] args)
     {
         //noinspection UnusedDeclaration
-        final AppFrame af = (AppFrame) start("World Wind KML Viewer", AppFrame.class);
+        final AppFrame af = (AppFrame) start("WorldWind KML Viewer", AppFrame.class);
     }
 }

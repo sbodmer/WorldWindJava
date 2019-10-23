@@ -85,7 +85,7 @@ public interface AVKey // TODO: Eliminate unused constants, if any
     final String DATA_TYPE = "gov.nasa.worldwind.avkey.DataType";
     final String DELETE_CACHE_ON_EXIT = "gov.nasa.worldwind.avkey.DeleteCacheOnExit";
     /**
-     * Indicates the World Wind scene's worst-case depth resolution, in meters. This is typically interpreted by the
+     * Indicates the WorldWind scene's worst-case depth resolution, in meters. This is typically interpreted by the
      * View as the desired resolution at the scene's maximum drawing distance. In this case, the resolution closer to
      * the viewer's eye point is significantly better then the worst-case resolution. Decreasing this value enables the
      * viewer to get closer to 3D shapes positioned above the terrain at the coast of potential rendering artifacts
@@ -296,7 +296,9 @@ public interface AVKey // TODO: Eliminate unused constants, if any
     final String PIXEL_FORMAT = "gov.nasa.worldwind.avkey.PixelFormat";
     final String PIXEL_HEIGHT = "gov.nasa.worldwind.avkey.PixelHeight";
     final String PIXEL_WIDTH = "gov.nasa.worldwind.avkey.PixelWidth";
+    
     /** @deprecated Use <code>{@link #DATA_TYPE} instead.</code>. */
+    @Deprecated
     final String PIXEL_TYPE = AVKey.DATA_TYPE;
 
     final String PLACENAME_LAYER_CACHE_SIZE = "gov.nasa.worldwind.avkey.PlacenameLayerCacheSize";

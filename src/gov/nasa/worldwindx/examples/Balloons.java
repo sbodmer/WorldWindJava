@@ -17,25 +17,25 @@ import java.awt.*;
 import java.io.InputStream;
 
 /**
- * Illustrates how to use a World Wind <code>{@link Balloon}</code> to display on-screen information to the user in the
+ * Illustrates how to use a WorldWind <code>{@link Balloon}</code> to display on-screen information to the user in the
  * form of a screen-aligned text balloon. There are two abstract balloon types: <code>{@link ScreenBalloon}</code> which
  * displays a balloon at a point on the screen, and <code>{@link GlobeBalloon}</code> which displays a balloon attached
  * to a position on the Globe. For each abstract balloon type, there are two concrete types: AnnotationBalloon which
  * provides support for simple text content with an optional image, and BrowserBalloon which provides support for
  * complex HTML, JavaScript, and Flash content.
- * <p/>
- * <strong>Balloon Content</strong> <br/> A Balloon's content is specified by calling <code>{@link
+ * <p>
+ * <strong>Balloon Content</strong> <br> A Balloon's content is specified by calling <code>{@link
  * Balloon#setText(String)}</code>, and its visual attributes are specified by calling <code>{@link
  * Balloon#setAttributes(gov.nasa.worldwind.render.BalloonAttributes)}</code> with an instance of <code>{@link
  * BalloonAttributes}</code>.
- * <p/>
- * <strong>ScreenBalloon</strong> <br/> ScreenBalloons display a screen-aligned balloon at a point on the screen. There
+ * <p>
+ * <strong>ScreenBalloon</strong> <br> ScreenBalloons display a screen-aligned balloon at a point on the screen. There
  * are two concrete ScreenBalloon types: <ul> <li><code>{@link ScreenAnnotationBalloon}</code> - a screen-attached
  * balloon with support for multi-line text, a background image, simple HTML text markup, and simple text styling
  * attributes.</li> <li><code>{@link ScreenBrowserBalloon}</code> - a screen-attached balloon with support for HTML,
  * JavaScript, and Flash content.</li> </ul>
- * <p/>
- * <strong>GlobeBalloon</strong> <br/> GlobeBalloons display a screen-aligned balloon attached to a position on the
+ * <p>
+ * <strong>GlobeBalloon</strong> <br> GlobeBalloons display a screen-aligned balloon attached to a position on the
  * Globe. <ul> <li><code>{@link GlobeAnnotationBalloon}</code> - a Globe-attached balloon with support for multi-line
  * text, a background image, simple HTML text markup, and simple text styling attributes.</li> <li><code>{@link
  * GlobeBrowserBalloon}</code> - a Globe-attached balloon with support for HTML, JavaScript, and Flash content.</li>
@@ -73,7 +73,7 @@ public class Balloons extends ApplicationTemplate
             this.makeAnnotationBalloon();
             this.makeBrowserBalloon();
 
-            // Size the World Window to provide enough screen space for the BrowserBalloon, and center the World Window
+            // Size the WorldWindow to provide enough screen space for the BrowserBalloon, and center the WorldWindow
             // on the screen.
             Dimension size = new Dimension(1200, 800);
             this.setPreferredSize(size);
@@ -156,6 +156,6 @@ public class Balloons extends ApplicationTemplate
         Configuration.setValue(AVKey.INITIAL_ALTITUDE, 9500000);
         Configuration.setValue(AVKey.INITIAL_PITCH, 45);
 
-        ApplicationTemplate.start("World Wind Balloons", AppFrame.class);
+        ApplicationTemplate.start("WorldWind Balloons", AppFrame.class);
     }
 }

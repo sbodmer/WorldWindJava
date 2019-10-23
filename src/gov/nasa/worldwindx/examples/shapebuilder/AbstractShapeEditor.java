@@ -22,7 +22,7 @@ import java.awt.event.*;
  * related labels), references to the current WorldWindow and mouse location, flags indicating whether the editor is
  * currently armed and whether annotations should be shown, as well as fields indicating the current action being
  * performed, the current editMode, and the current altitudeMode.
- * <p/>
+ * <p>
  * In addition, the class contains several helper functions related to displaying annotations, which all editors should
  * be able to do.
  *
@@ -33,7 +33,7 @@ public abstract class AbstractShapeEditor extends AbstractLayer implements Mouse
 {
     /**
      * Labels used in the annotations which are displayed during editing to show the current value of various shape
-     * parameters.  Actual label values are retrieved from the World Wind message resource bundle.
+     * parameters.  Actual label values are retrieved from the WorldWind message resource bundle.
      */
     public static final String ANGLE_LABEL = "MeasureTool.AngleLabel";
     public static final String AREA_LABEL = "MeasureTool.AreaLabel";

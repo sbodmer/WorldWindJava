@@ -271,9 +271,9 @@ public class KMLLink extends KMLAbstractObject
      * <code>viewFormat</code> and <code>httpQuery</code>. Otherwise, this returns the concatenation of the
      * <code>href</code>, the <code>viewFormat</code> and the <code>httpQuery</code> for form an absolute URL string. If
      * the the <code>href</code> contains a query string, the <code>viewFormat</code> and <code>httpQuery</code> are
-     * appended to that string. If necessary, this inserts the <code>&</code> character between the <code>href</code>'s
+     * appended to that string. If necessary, this inserts the <code>&amp;</code> character between the <code>href</code>'s
      * query string, the <code>viewFormat</code>, and the <code>httpQuery</code>.
-     * <p/>
+     * <p>
      * This substitutes the following parameters in <code>viewFormat</code> and <code>httpQuery</code>: <ul>
      * <li><code>[bboxWest],[bboxSouth],[bboxEast],[bboxNorth]</code> - visible bounds of the globe, or 0 if the globe
      * is not visible. The visible bounds are scaled from their centroid by this link's
@@ -286,8 +286,8 @@ public class KMLLink extends KMLAbstractObject
      * [cameraAlt]</code> - view's eye position.</li> <li><code>[horizFov], [vertFov]</code> - view's horizontal and
      * vertical field of view.</li> <li><code>[horizPixels], [vertPixels]</code> - width and height of the
      * viewport.</li> <li><code>[terrainEnabled]</code> - always <code>true</code></li> <li><code>[clientVersion]</code>
-     * - World Wind client version.</li> <li><code>[clientName]</code> - World Wind client name.</li>
-     * <li><code>[kmlVersion]</code> - KML version supported by World Wind.</li> <li><code>[language]</code> - current
+     * - WorldWind client version.</li> <li><code>[clientName]</code> - WorldWind client name.</li>
+     * <li><code>[kmlVersion]</code> - KML version supported by WorldWind.</li> <li><code>[language]</code> - current
      * locale's language.</li> </ul> If the <code>viewFormat</code> is unspecified, and the <code>viewRefreshMode</code>
      * is one of <code>onRequest</code>, <code>onStop</code> or <code>onRegion</code>, this automatically appends the
      * following information to the query string: <code>BBOX=[bboxWest],[bboxSouth],[bboxEast],[bboxNorth]</code>. The

@@ -14,7 +14,7 @@ import gov.nasa.worldwind.render.*;
 import gov.nasa.worldwind.terrain.Terrain;
 import gov.nasa.worldwind.util.*;
 
-import javax.media.opengl.*;
+import com.jogamp.opengl.*;
 import javax.xml.stream.*;
 import java.awt.*;
 import java.io.IOException;
@@ -423,7 +423,7 @@ public class AntennaAxes extends AbstractShape
         if (this.getElevationAngle() != null)
             baseM = baseM.multiply(Matrix.fromAxisAngle(this.getElevationAngle(), Vec4.UNIT_X));
 
-        // Compute the screen points at which to place the labels. These are all points on the World Wind principal
+        // Compute the screen points at which to place the labels. These are all points on the WorldWind principal
         // axes, not the antenna model's axes. The correct labeling of those takes place below when the labels are
         // drawn. They have the same directions, but in the antenna model WW's Y axis is the model's Z axis, WW's Z
         // axis is the model's X axis, and WW's X axis is the model's Y axis.

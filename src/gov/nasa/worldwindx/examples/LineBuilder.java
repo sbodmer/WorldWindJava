@@ -28,19 +28,19 @@ import java.util.*;
  * will echo while the mouse is dragged. Continue selecting new positions this way until the polyline contains all
  * desired positions. </li> <li> Disarm the <code>LineBuilder</code> object by calling its {@link #setArmed(boolean)}
  * method with an argument of false. </li> </ul>
- * <p/>
+ * <p>
  * While the line builder is armed, pressing and immediately releasing mouse button one while also pressing the control
  * key (Ctl) removes the last position from the polyline. </p>
- * <p/>
+ * <p>
  * Mouse events the line builder acts on while armed are marked as consumed. These events are mouse pressed, released,
  * clicked and dragged. These events are not acted on while the line builder is not armed. The builder can be
  * continuously armed and rearmed to allow intervening maneuvering of the globe while building a polyline. A user can
  * add positions, pause entry, maneuver the view, then continue entering positions. </p>
- * <p/>
+ * <p>
  * Arming and disarming the line builder does not change the contents or attributes of the line builder's layer. </p>
- * <p/>
+ * <p>
  * The polyline and a layer containing it may be specified when a <code>LineBuilder</code> is constructed. </p>
- * <p/>
+ * <p>
  * This class contains a <code>main</code> method implementing an example program illustrating use of
  * <code>LineBuilder</code>. </p>
  *
@@ -60,7 +60,7 @@ public class LineBuilder extends AVListImpl
      * Construct a new line builder using the specified polyline and layer and drawing events from the specified world
      * window. Either or both the polyline and the layer may be null, in which case the necessary object is created.
      *
-     * @param wwd       the world window to draw events from.
+     * @param wwd       the WorldWindow to draw events from.
      * @param lineLayer the layer holding the polyline. May be null, in which case a new layer is created.
      * @param polyline  the polyline object to build. May be null, in which case a new polyline is created.
      */
@@ -391,6 +391,6 @@ public class LineBuilder extends AVListImpl
     public static void main(String[] args)
     {
         //noinspection deprecation
-        ApplicationTemplate.start("World Wind Line Builder", LineBuilder.AppFrame.class);
+        ApplicationTemplate.start("WorldWind Line Builder", LineBuilder.AppFrame.class);
     }
 }
